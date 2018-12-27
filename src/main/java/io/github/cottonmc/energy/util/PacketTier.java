@@ -1,22 +1,26 @@
 package io.github.cottonmc.energy.util;
 
-public enum PacketTier {
-	//TODO: values not final, discuss
-	/**
-	 * @value TIER_1: base level. Coal-powered, early-game machines.
-	 * @value TIER_2: mid-level. Coal coke-powered, first industrial machines.
-	 * @value TIER_3: high-level. ??????-powered, medium-scale machines.
-	 * @value TIER_4: endgame. Uranium-powered, large-scale industrial setups.
-	 */
-	TIER_1(40), TIER_2(80), TIER_3(160), TIER_4(320);
+public class PacketTier {
 
-	private final int size;
+    //TODO: values not final, discuss
+    /**
+     * @value TIER_1: base level. Coal-powered, early-game machines.
+     * @value TIER_2: mid-level. Coal coke-powered, first industrial machines.
+     * @value TIER_3: high-level. ??????-powered, medium-scale machines.
+     * @value TIER_4: endgame. Uranium-powered, large-scale industrial setups.
+     */
+    public static final PacketTier TIER_1 = new PacketTier(40);
+    public static final PacketTier TIER_2 = new PacketTier(80);
+    public static final PacketTier TIER_3 = new PacketTier(160);
+    public static final PacketTier TIER_4 = new PacketTier(320);
 
-	PacketTier(int size) {
-		this.size = size;
-	}
+    private final int size;
 
-	public int getPacketSize() {
-		return size;
-	}
+    public PacketTier(int size) {
+        this.size = size;
+    }
+
+    public int getPacketSize() {
+        return size;
+    }
 }
