@@ -16,8 +16,6 @@ buildscript {
 	}
 }
 
-
-
 plugins {
 	id 'java'
 	id 'eclipse'
@@ -25,6 +23,11 @@ plugins {
 }
 
 apply plugin: net.fabricmc.loom.LoomGradlePlugin
+
+repositories {
+	maven { url 'https://jitpack.io' }
+}
+
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -39,5 +42,5 @@ dependencies {
 	modCompile "net.fabricmc:fabric:0.1.2.64"
 
 	//The main cotton api. We need a maven repo...
-	//modCompile ""
+	modCompile "com.github.CottonMC:cotton:master-SNAPSHOT"
 }
