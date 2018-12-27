@@ -4,7 +4,7 @@ import io.github.cottonmc.energy.util.ContainerInteraction;
 import io.github.cottonmc.energy.util.PacketTier;
 import net.minecraft.util.math.Direction;
 
-public interface EnergyExtractor {
+public interface EnergyProducer {
     /**
      * Attempt to extract an energy packet on an all-or-nothing basis.
      *
