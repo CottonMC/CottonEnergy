@@ -1,0 +1,9 @@
+{
+  "id": "cotton-energy",
+  "name": "Cotton Energy",
+  "version": "1.0.0",
+  "side": "universal",
+  "initializers": [
+    "io.github.cottonmc.energy.CottonEnergy"
+  ]
+}
