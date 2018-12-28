@@ -1,41 +1,29 @@
 package io.github.cottonmc.energy.api;
 
-import io.github.cottonmc.energy.util.ContainerInteraction;
-import io.github.cottonmc.energy.util.PacketTier;
+import javax.annotation.Nonnull;
+
 import net.minecraft.util.math.Direction;
 
 public interface EnergyConsumer {
 
     /**
-     * @param insertingFrom the side energy is being inserted from.
-     * @param size          the size of packet that is being inserted.
-     * @return whether energy can be inserted from this direction and at this packet size.
+     * Find out whether EnergyPackets can be inserted from a given Direction.
+     * 
+     * @param insertingFrom the side from which to insert, from the perspective of the object being inserted into.
+     * @return whether energy can be inserted from this direction.
      */
-    boolean canInsertEnergy(Direction insertingFrom, PacketTier size);
+    boolean canInsertEnergy(Direction insertingFrom);
 
     /**
-     * Attempt to insert an energy packet on an all-or-nothing basis.
+     * Attempt to insert an energy packet. It's up to the Consumer whether packets are accepted partially or on an
+     * all-or-nothing basis.
      *
-     * @param insertingFrom the side from which to insert.
-     * @param packetSize    what size of packet to insert.
-     * @param interaction   whether to SIMULATE or EXECUTE insertion.
-     * @return whether the insertion was/would be successful.
+     * @param insertingFrom the side from which to insert, from the perspective of the object being inserted into.
+     * @param packet        the packet to insert.
+     * @param actionType    whether to SIMULATE or PERFORM insertion.
+     * @return a packet containing any leftover energy, or EMPTY_PACKET if the insertion was completely successful.
      */
-    default boolean tryInsertPacket(Direction insertingFrom, PacketTier packetSize, ContainerInteraction interaction) {
-        if (canInsertEnergy(insertingFrom, packetSize)) {
-            if (interaction == ContainerInteraction.EXECUTE) insertPacket(insertingFrom, packetSize);
-            return true;
-        }
-        return false;
-    }
+    @Nonnull
+    EnergyPacket insertEnergy(Direction insertingFrom, EnergyPacket packet, ActionType actionType);
 
-    /**
-     * Internal energy-insertion mechanism, used by tryInsertPacket.
-     * This will always insert energy, and may cause an overflow.
-     * Don't use this unless you know what you're doing.
-     *
-     * @param insertingFrom the side from which to insert.
-     * @param packetSize    what size of packet to insert.
-     */
-    void insertPacket(Direction insertingFrom, PacketTier packetSize);
 }
