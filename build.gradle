@@ -43,4 +43,6 @@ dependencies {
 
 	//The main cotton api. We need a maven repo...
 	modCompile "com.github.CottonMC:cotton:master-SNAPSHOT"
+	
+	modCompile "com.google.code.findbugs:jsr305:3.0.2"
 }
