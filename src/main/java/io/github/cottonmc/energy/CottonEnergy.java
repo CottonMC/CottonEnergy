@@ -12,7 +12,7 @@ import net.minecraft.util.registry.Registry;
 
 public class CottonEnergy implements ModInitializer {
 
-	public static final ModifiableRegistry<EnergyType> ENERGY_REGISTRY = new DefaultMappedRegistry("energy");
+	public static final ModifiableRegistry<EnergyType> ENERGY_REGISTRY = new DefaultMappedRegistry("cotton:empty");
 
 	@Override
 	public void onInitialize() {

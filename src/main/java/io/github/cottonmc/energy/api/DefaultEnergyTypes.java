@@ -2,6 +2,7 @@ package io.github.cottonmc.energy.api;
 
 import io.github.cottonmc.energy.CottonEnergy;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 public class DefaultEnergyTypes {
 
@@ -22,7 +23,7 @@ public class DefaultEnergyTypes {
 	}
 
 	public static EnergyType register(String name, EnergyType type) {
-		CottonEnergy.ENERGY_REGISTRY.register(new Identifier("cotton", name), type);
+		Registry.register(CottonEnergy.ENERGY_REGISTRY, new Identifier("cotton", name), type);
 		return type;
 	}
 

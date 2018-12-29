@@ -18,9 +18,9 @@ public interface EnergyStorage extends EnergyProducer, EnergyConsumer {
     EnergyType getPrimaryEnergyType();
 
     /**
-     * @param type the type of energy that querying for connection.
+     * @param type the type(s) of energy that querying for connection.
      * @return     whether that type of energy can interact with the storage.
      */
-    boolean canConnectTo(EnergyType type);
+    boolean canConnectTo(EnergyType... type);
 
 }
