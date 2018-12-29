@@ -1,5 +1,7 @@
 package io.github.cottonmc.energy.api;
 
+import net.minecraft.util.math.Direction;
+
 public interface EnergyStorage extends EnergyProducer, EnergyConsumer {
 
     /**
@@ -18,9 +20,10 @@ public interface EnergyStorage extends EnergyProducer, EnergyConsumer {
     EnergyType getPrimaryEnergyType();
 
     /**
-     * @param type the type(s) of energy that querying for connection.
-     * @return     whether that type of energy can interact with the storage.
+     * @param inspectingFrom the direction from which a connection is being attempted.
+     * @param type           the type(s) of energy that querying for connection.
+     * @return               whether that type of energy can interact with the storage.
      */
-    boolean canConnectTo(EnergyType... type);
+    boolean canConnectTo(Direction inspectingFrom, EnergyType... type);
 
 }
