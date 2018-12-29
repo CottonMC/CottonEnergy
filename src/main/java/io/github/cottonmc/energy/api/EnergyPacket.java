@@ -5,23 +5,23 @@ package io.github.cottonmc.energy.api;
  */
 public class EnergyPacket {
 
-    public static final EnergyPacket EMPTY_PACKET = new EnergyPacket(PacketTier.LOW_VOLTAGE, 0);
+    public static final EnergyPacket EMPTY_PACKET = new EnergyPacket(DefaultEnergyTypes.ENERGY_TYPE_EMPTY, 0);
 
-    protected PacketTier tier;
+    protected EnergyType type;
     protected int amount;
 
-    public EnergyPacket(PacketTier tier) {
-        this.tier = tier;
-        this.amount = tier.getPacketSize();
+    public EnergyPacket(EnergyType type) {
+        this.type = type;
+        this.amount = type.getMaximumPacketSize();
     }
 
-    public EnergyPacket(PacketTier tier, int amount) {
-        this.tier = tier;
+    public EnergyPacket(EnergyType type, int amount) {
+        this.type = type;
         this.amount = amount;
     }
 
-    public PacketTier getPacketTier() {
-        return this.tier;
+    public EnergyType getEnergyType() {
+        return this.type;
     }
 
     public int getAmount() {

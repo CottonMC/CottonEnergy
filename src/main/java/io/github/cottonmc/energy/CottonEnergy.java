@@ -1,22 +1,24 @@
 package io.github.cottonmc.energy;
 
 
+import io.github.cottonmc.cotton.Cotton;
+import io.github.cottonmc.energy.api.EnergyType;
+import io.github.cottonmc.energy.api.DefaultEnergyTypes;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.DefaultMappedRegistry;
+import net.minecraft.util.registry.ModifiableRegistry;
+import net.minecraft.util.registry.Registry;
 
 public class CottonEnergy implements ModInitializer {
 
+	public static final ModifiableRegistry<EnergyType> ENERGY_REGISTRY = new DefaultMappedRegistry("cotton:empty");
 
 	@Override
 	public void onInitialize() {
-		System.out.println("Starting Cotton energy");
-
-		/**
-		 * Not sure if we really want to turn cotton energy into a mod. I wrote some ideas
-		 * about this project into the Let's talk: energy issue of the main cotton mod.
-		 * my idea is to cleanly seperate the api from the implementation, so that there can
-		 * be different energy mods (mods that add cables and transformers) that all have the same api.
-		 * Please have a look at it before continuing.
-		 * 	- Ansraer
-		 */
+		Cotton.logger.info("Starting Cotton Energy!");
+		Registry.REGISTRIES.register(new Identifier("cotton", "energy"), ENERGY_REGISTRY);
+		DefaultEnergyTypes.init();
 	}
+
 }
