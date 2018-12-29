@@ -5,7 +5,7 @@ package io.github.cottonmc.energy.api;
  */
 public class EnergyPacket {
 
-    public static final EnergyPacket EMPTY_PACKET = new EnergyPacket(ElectricalEnergyType.LOW_VOLTAGE, 0);
+    public static final EnergyPacket EMPTY_PACKET = new EnergyPacket(DefaultEnergyTypes.ENERGY_TYPE_EMPTY, 0);
 
     protected EnergyType type;
     protected int amount;
