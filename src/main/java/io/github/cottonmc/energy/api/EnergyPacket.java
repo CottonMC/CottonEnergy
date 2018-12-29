@@ -1,5 +1,7 @@
 package io.github.cottonmc.energy.api;
 
+import net.minecraft.text.TextComponent;
+
 /**
  * Kind of like an "EnergyStack". Represents energy in a movable or consumable form, ready to do work.
  */
@@ -28,4 +30,7 @@ public class EnergyPacket {
         return this.amount;
     }
 
+    public TextComponent getDisplayAmount() {
+        return type.getDisplayAmount(amount);
+    }
 }
