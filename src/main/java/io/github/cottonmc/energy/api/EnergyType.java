@@ -1,21 +1,21 @@
 package io.github.cottonmc.energy.api;
 
-public class PacketTier implements Comparable<PacketTier> {
+public class EnergyType implements Comparable<EnergyType> {
 
     //TODO: values not final, discuss
     /** Base level. Coal-powered or early-game machines. */
-    public static final PacketTier LOW_VOLTAGE = new PacketTier(40);
+    public static final EnergyType LOW_VOLTAGE = new EnergyType(40);
     /** Mid-level. Coal coke powered, first industrial machines */
-    public static final PacketTier MEDIUM_VOLTAGE = new PacketTier(80);
+    public static final EnergyType MEDIUM_VOLTAGE = new EnergyType(80);
     /** High-level. ??????-powered, medium-scale machines. */
-    public static final PacketTier HIGH_VOLTAGE = new PacketTier(160);
+    public static final EnergyType HIGH_VOLTAGE = new EnergyType(160);
     /** Endgame. Uranium or higher, large-scale industrial setups or high-voltage power lines. */
-    public static final PacketTier ULTRA_HIGH_VOLTAGE = new PacketTier(320);
+    public static final EnergyType ULTRA_HIGH_VOLTAGE = new EnergyType(320);
 
     private final int size;
 
-    public PacketTier(int size) {
-        this.size = size;
+    public EnergyType(int maxSize) {
+        this.size = maxSize;
     }
 
     public int getPacketSize() {
@@ -24,7 +24,7 @@ public class PacketTier implements Comparable<PacketTier> {
 
     //implements Comparable<PacketTier> {
         @Override
-        public int compareTo(PacketTier other) {
+        public int compareTo(EnergyType other) {
             return Integer.compare(this.getPacketSize(), other.getPacketSize());
         }
     //}

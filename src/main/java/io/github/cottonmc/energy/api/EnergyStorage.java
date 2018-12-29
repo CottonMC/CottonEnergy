@@ -13,8 +13,13 @@ public interface EnergyStorage extends EnergyProducer, EnergyConsumer {
     int getCurrentEnergy();
 
     /**
-     * @return the highest tier of energy this device is capable of working with under any circumstances.
+     * @return the primary type of energy this device is capable of working with under any circumstances.
      */
-    PacketTier getPacketTier();
+    EnergyType getPrimaryEnergyType();
+
+    /**
+     * @return any other energy types this device is capable of accepting.
+     */
+    EnergyType[] getSecondaryEnergyTypes();
 
 }

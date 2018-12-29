@@ -18,11 +18,11 @@ public interface EnergyProducer {
      * Attempt to extract an energy packet on an all-or-nothing basis.
      *
      * @param extractingFrom the side from which to extract, from the perspective of the object being extracted from.
-     * @param packetTier     what tier of packet to extract.
+     * @param energyType     what type of energy to extract.
      * @param actionType     whether to SIMULATE or PERFORM extraction.
-     * @return A new, full packet of the intended tier, or EMPTY_PACKET if energy cannot be extracted.
+     * @return A new, full packet of the intended type, or EMPTY_PACKET if energy cannot be extracted.
      */
     @Nonnull
-    EnergyPacket extractEnergy(Direction extractingFrom, PacketTier packetTier, ActionType actionType);
+    EnergyPacket extractEnergy(Direction extractingFrom, EnergyType energyType, ActionType actionType);
 
 }

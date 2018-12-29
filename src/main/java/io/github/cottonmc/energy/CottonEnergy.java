@@ -1,6 +1,7 @@
 package io.github.cottonmc.energy;
 
 
+import io.github.cottonmc.cotton.Cotton;
 import net.fabricmc.api.ModInitializer;
 
 public class CottonEnergy implements ModInitializer {
@@ -8,7 +9,7 @@ public class CottonEnergy implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		System.out.println("Starting Cotton energy");
+		Cotton.logger.info("Starting Cotton Energy!");
 
 		/**
 		 * Not sure if we really want to turn cotton energy into a mod. I wrote some ideas
