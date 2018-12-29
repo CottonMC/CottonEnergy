@@ -5,14 +5,14 @@ package io.github.cottonmc.energy.api;
  */
 public class EnergyPacket {
 
-    public static final EnergyPacket EMPTY_PACKET = new EnergyPacket(EnergyType.LOW_VOLTAGE, 0);
+    public static final EnergyPacket EMPTY_PACKET = new EnergyPacket(ElectricalEnergyType.LOW_VOLTAGE, 0);
 
     protected EnergyType type;
     protected int amount;
 
     public EnergyPacket(EnergyType type) {
         this.type = type;
-        this.amount = type.getPacketSize();
+        this.amount = type.getMaximumPacketSize();
     }
 
     public EnergyPacket(EnergyType type, int amount) {
@@ -20,7 +20,7 @@ public class EnergyPacket {
         this.amount = amount;
     }
 
-    public EnergyType getPacketType() {
+    public EnergyType getEnergyType() {
         return this.type;
     }
 

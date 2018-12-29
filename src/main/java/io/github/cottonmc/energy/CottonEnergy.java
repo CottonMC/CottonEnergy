@@ -2,10 +2,16 @@ package io.github.cottonmc.energy;
 
 
 import io.github.cottonmc.cotton.Cotton;
+import io.github.cottonmc.energy.api.EnergyType;
+import io.github.cottonmc.energy.impl.EnergyTypeRegistry;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.util.registry.DefaultMappedRegistry;
+
+import java.util.function.Supplier;
 
 public class CottonEnergy implements ModInitializer {
 
+	public static final DefaultMappedRegistry<EnergyType> ENERGY_TYPES = new EnergyTypeRegistry();
 
 	@Override
 	public void onInitialize() {
@@ -20,4 +26,5 @@ public class CottonEnergy implements ModInitializer {
 		 * 	- Ansraer
 		 */
 	}
+
 }
