@@ -12,13 +12,13 @@ public class DefaultEnergyTypes {
 
     //TODO: values not final, discuss
     /** Base level. Coal-powered or early-game machines. */
-    public static final EnergyType LOW_VOLTAGE = register("low_voltage", new ElectricalEnergyType(1));
+    public static final EnergyType LOW_VOLTAGE = register("low_voltage", new ElectricalEnergyType(4));
     /** Mid-level. Coal coke powered, first industrial machines */
-    public static final EnergyType MEDIUM_VOLTAGE = register("medium_voltage", new ElectricalEnergyType(10));
+    public static final EnergyType MEDIUM_VOLTAGE = register("medium_voltage", new ElectricalEnergyType(16));
     /** High-level. ??????-powered, medium-scale machines. */
-    public static final EnergyType HIGH_VOLTAGE = register("high_voltage", new ElectricalEnergyType(100));
+    public static final EnergyType HIGH_VOLTAGE = register("high_voltage", new ElectricalEnergyType(64));
     /** Endgame. Uranium or higher, large-scale industrial setups or high-voltage power lines. */
-    public static final EnergyType ULTRA_HIGH_VOLTAGE = register("ultra_high_voltage", new ElectricalEnergyType(1000));
+    public static final EnergyType ULTRA_HIGH_VOLTAGE = register("ultra_high_voltage", new ElectricalEnergyType(256));
 
     public static void init() {
 
@@ -34,12 +34,12 @@ public class DefaultEnergyTypes {
 
         }
         @Override
-        public int getMaximumPacketSize() {
+        public int getMaximumTransferSize() {
             return 0;
         }
 
         @Override
-        public int getMinimumPacketSize() {
+        public int getMinimumTransferSize() {
             return 0;
         }
 
