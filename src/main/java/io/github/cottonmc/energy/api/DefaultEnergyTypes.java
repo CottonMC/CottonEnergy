@@ -26,24 +26,4 @@ public class DefaultEnergyTypes {
         Registry.register(CottonEnergy.ENERGY_REGISTRY, new Identifier("cotton", name), type);
         return type;
     }
-
-    public static class EmptyEnergyType implements EnergyType {
-        public EmptyEnergyType() {
-
-        }
-        @Override
-        public int getMaximumTransferSize() {
-            return 0;
-        }
-
-        @Override
-        public int getMinimumTransferSize() {
-            return 0;
-        }
-
-        @Override
-        public TextComponent getDisplayAmount(int amount) {
-            return new TranslatableTextComponent("info.cotton.energy.empty");
-        }
-    }
 }
