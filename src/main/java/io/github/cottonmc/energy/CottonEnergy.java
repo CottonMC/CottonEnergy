@@ -14,7 +14,7 @@ public class CottonEnergy implements ModInitializer {
 
     public static final Registry<EnergyType> ENERGY_REGISTRY;
     static { //Be ready before our admirers!
-        ModifiableRegistry<EnergyType> temp_init = new DefaultMappedRegistry<EnergyType>("cotton:empty");
+        ModifiableRegistry<EnergyType> temp_init = new DefaultMappedRegistry<EnergyType>("cotton:low_voltage");
         Registry.REGISTRIES.register( new Identifier("cotton", "energy"), temp_init );
         ENERGY_REGISTRY = temp_init;
 

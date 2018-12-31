@@ -8,8 +8,6 @@ import net.minecraft.util.registry.Registry;
 
 public class DefaultEnergyTypes {
 
-    public static final EnergyType ENERGY_TYPE_EMPTY = register("cotton:empty", new EmptyEnergyType());
-
     //TODO: values not final, discuss
     /** Base level. Coal-powered or early-game machines. */
     public static final EnergyType LOW_VOLTAGE = register("low_voltage", new ElectricalEnergyType(4));
