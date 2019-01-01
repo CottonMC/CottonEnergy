@@ -24,31 +24,27 @@ public interface EnergyComponent {
     /**
      * Attempt to insert energy.
      *
-     * @param type          the kind of energy to insert.
      * @param amount        the amount of energy to insert.
      * @param actionType    whether to SIMULATE or PERFORM insertion.
      * @return the amount of leftover energy, or 0 if the insertion was completely successful.
      */
     @Nonnull
-    int insertEnergy(EnergyType type, int amount, ActionType actionType);
+    int insertEnergy(int amount, ActionType actionType);
 
     /**
      * Find out whether EnergyPackets can be extracted from a given Direction.
      * 
-     * @param extractingFrom the side from which to extract, from the perspective of the object being extracted from.
      * @return whether energy can be extracted from this direction.
      */
     boolean canExtractEnergy();
 
     /**
-     * Attempt to extract an energy packet on an all-or-nothing basis.
+     * Attempt to extract energy.
      *
-     * @param extractingFrom the side from which to extract, from the perspective of the object being extracted from.
-     * @param energyType     what type of energy to extract.
      * @param amount         the amount of energy to extract.
      * @param actionType     whether to SIMULATE or PERFORM extraction.
      * @return The amount of energy actually extracted, or zero if none was extracted.
      */
     @Nonnull
-    int extractEnergy(EnergyType energyType, int amount, ActionType actionType);
+    int extractEnergy(int amount, ActionType actionType);
 }

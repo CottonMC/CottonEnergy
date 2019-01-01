@@ -18,7 +18,6 @@ public interface EnergyComponentHolder {
     }
 
     /**
-     * @param inspectingFrom   the side being queried, from the perspective of the block being queried.
      * @param energyTypes      the kinds of energy the caller is interested in.
      * @return whether this block offers energy connectivity for one or more of the provided types on that side.
      */
@@ -28,7 +27,6 @@ public interface EnergyComponentHolder {
      * Returns an EnergyComponent responsible for handling interactions of the given Direction and EnergyType. This may
      * include components offered solely to make the block slowly short out when the wrong EnergyType is offered!
      * 
-     * @param inspectingFrom   the side being queried, from the perspective of the block being queried.
      * @param energyType       the kind of energy being interacted with.
      * @return an EnergyComponent responsible for the given EnergyType, or null if no component is offered for that Direction and EnergyType.
      */
