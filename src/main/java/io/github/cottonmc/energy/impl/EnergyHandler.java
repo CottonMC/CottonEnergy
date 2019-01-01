@@ -45,7 +45,7 @@ public class EnergyHandler implements EnergyComponent, Observable {
 		int insertAmount = (amount <= insertRoom)? amount : insertRoom;
 		if (actionType == ActionType.PERFORM) {
 			currentEnergy += insertAmount;
-			onChanged();
+			if (insertAmount != 0) onChanged();
 		}
 		return insertAmount;
 	}
@@ -56,7 +56,7 @@ public class EnergyHandler implements EnergyComponent, Observable {
 		int extractAmount = (amount <= currentEnergy)? amount : currentEnergy;
 		if (actionType == ActionType.PERFORM) {
 			currentEnergy -= extractAmount;
-			onChanged();
+			if (extractAmount != 0) onChanged();
 		}
 		return extractAmount;
 	}
