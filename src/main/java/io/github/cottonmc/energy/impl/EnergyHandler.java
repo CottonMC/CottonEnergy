@@ -2,10 +2,11 @@ package io.github.cottonmc.energy.impl;
 
 import io.github.cottonmc.energy.api.ActionType;
 import io.github.cottonmc.energy.api.EnergyComponent;
+import io.github.cottonmc.energy.api.Observable;
 
 import javax.annotation.Nonnull;
 
-public class EnergyHandler implements EnergyComponent {
+public class EnergyHandler implements EnergyComponent, Observable {
 
 	private int maxEnergy;
 	private int currentEnergy = 0;
@@ -59,5 +60,10 @@ public class EnergyHandler implements EnergyComponent {
 	void setMaxEnergy(int amount) {
 		maxEnergy = amount;
 		if (currentEnergy > maxEnergy) currentEnergy = maxEnergy;
+	}
+
+	@Override
+	public void listen(@Nonnull Runnable r) {
+		r.run();
 	}
 }
