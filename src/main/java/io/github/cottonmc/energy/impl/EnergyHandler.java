@@ -12,6 +12,10 @@ public class EnergyHandler implements EnergyComponent {
 	private boolean canInsert;
 	private boolean canExtract;
 
+	public EnergyHandler(int maxEnergy) {
+		this(maxEnergy, true, true);
+	}
+	
 	public EnergyHandler(int maxEnergy, boolean canInsert, boolean canExtract) {
 		this.maxEnergy = maxEnergy;
 		this.canInsert = canInsert;
