@@ -9,9 +9,13 @@ public class EnergyHandler implements EnergyComponent {
 
 	private int maxEnergy;
 	private int currentEnergy = 0;
+	private boolean canInsert;
+	private boolean canExtract;
 
-	public EnergyHandler(int maxEnergy) {
+	public EnergyHandler(int maxEnergy, boolean canInsert, boolean canExtract) {
 		this.maxEnergy = maxEnergy;
+		this.canInsert = canInsert;
+		this.canExtract = canExtract;
 	}
 
 	@Override
@@ -26,18 +30,18 @@ public class EnergyHandler implements EnergyComponent {
 
 	@Override
 	public boolean canInsertEnergy() {
-		return currentEnergy < maxEnergy;
+		return canInsert;
 	}
 
 	@Override
 	public boolean canExtractEnergy() {
-		return currentEnergy > 0;
+		return canExtract;
 	}
 
 	@Nonnull
 	@Override
 	public int insertEnergy(int amount, ActionType actionType) {
-		int insertRoom = maxEnergy = currentEnergy;
+		int insertRoom = maxEnergy - currentEnergy;
 		int insertAmount = (amount <= insertRoom)? amount : insertRoom;
 		if (actionType == ActionType.PERFORM) currentEnergy += insertAmount;
 		return insertAmount;
