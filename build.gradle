@@ -16,16 +16,14 @@ buildscript {
 	}
 }
 
-plugins {
-	id 'java'
-	id 'eclipse'
-	id 'idea'
-}
-
 apply plugin: net.fabricmc.loom.LoomGradlePlugin
+apply plugin: 'maven-publish'
+//Not needed yet, but a few things can just be uncommented if, at some point, we do.
+//apply plugin: 'com.github.johnrengelman.shadow'
 
 repositories {
-	maven { url 'https://jitpack.io' }
+	//maven { url 'http://server.bbkr.space:8081/artifactory/' }
+	mavenLocal()
 }
 
 
@@ -33,16 +31,75 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 archivesBaseName = "cotton-energy"
-version = "18w50a-1.0.0"
+group = "io.github.cottonmc"
+version = "1.0.0+18w50a"
 
 dependencies {
 	minecraft "com.mojang:minecraft:18w50a"
 	mappings "net.fabricmc:yarn:18w50a.71"
 	modCompile "net.fabricmc:fabric-loader:0.3.0.75"
 	modCompile "net.fabricmc:fabric:0.1.2.64"
-
-	//The main cotton api. We need a maven repo...
-	modCompile "com.github.CottonMC:cotton:master-SNAPSHOT"
 	
-	modCompile "com.google.code.findbugs:jsr305:3.0.2"
+	modCompile "io.github.cottonmc:cotton:0.0.2+18w50a:dev" //Not sure we even need this at the moment
+	
+	implementation "com.google.code.findbugs:jsr305:3.0.2"
 }
+
+publishing {
+	publications {
+		maven(MavenPublication) {
+			from components.java
+		
+			artifactId = "cotton-energy"
+			
+			pom.withXml {
+				def pomFile = asNode()
+				def depsNode = pomFile.get("dependencies");
+				pomFile.remove(depsNode);
+				
+				def newDeps = pomFile.appendNode("dependencies");
+				configurations.modCompile.getResolvedConfiguration().getFirstLevelModuleDependencies().each {
+					def artifactNode = newDeps.appendNode("dependency")
+					artifactNode.appendNode('groupId', it.moduleGroup)
+					artifactNode.appendNode('artifactId', it.moduleName)
+					artifactNode.appendNode('version', it.moduleVersion)
+				}
+			}
+			artifacts = [
+				artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${version}.jar") { //release jar - file location not provided anywhere in loom
+					classifier null
+					builtBy remapJar
+				},
+				artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${version}-dev.jar") { //release jar - file location not provided anywhere in loom
+					classifier "dev"
+					builtBy remapJar
+				},
+				artifact (sourcesJar)
+			]
+		}
+	}
+}
+
+task sourcesJar(type: Jar) {
+	baseName = archivesBaseName
+	classifier = "sources"
+	from sourceSets.main.allSource
+	from sourceSets.main.resources
+}
+
+/* //Enable for shadow, and add shadow classifier to the artifact names in publishing
+shadowJar {
+	relocate 'blue.endless.jankson', 'io.github.cottonmc.repackage.blue.endless.jankson'
+	classifier = "shadow"
+	configurations = [project.configurations.shadow]
+}
+
+tasks.remapJar.dependsOn shadowJar
+tasks.remapJar.mustRunAfter shadowJar
+tasks.publish.shouldRunAfter shadowJar
+tasks.publish.mustRunAfter remapJar
+
+tasks.jar << {
+	tasks.remapJar.jar = tasks.shadowJar.outputs.getFiles()[0]
+}
+*/
