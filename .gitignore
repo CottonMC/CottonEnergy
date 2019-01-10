@@ -20,6 +20,7 @@
 
 # Sekrit files
 private.properties
+private.gradle
 
 # Files from bad operating systems :^)
 Thumbs.db

@@ -16,14 +16,18 @@ buildscript {
 	}
 }
 
+plugins {
+	id "com.jfrog.artifactory" version "4.9.0"
+}
+
 apply plugin: net.fabricmc.loom.LoomGradlePlugin
 apply plugin: 'maven-publish'
 //Not needed yet, but a few things can just be uncommented if, at some point, we do.
 //apply plugin: 'com.github.johnrengelman.shadow'
 
 repositories {
-	//maven { url 'http://server.bbkr.space:8081/artifactory/' }
-	mavenLocal()
+	maven { url 'http://server.bbkr.space:8081/artifactory/libs-snapshot/' }
+	//mavenLocal()
 }
 
 
@@ -40,9 +44,13 @@ dependencies {
 	modCompile "net.fabricmc:fabric-loader:0.3.0.75"
 	modCompile "net.fabricmc:fabric:0.1.2.64"
 	
-	modCompile "io.github.cottonmc:cotton:0.0.2+18w50a:dev" //Not sure we even need this at the moment
+	modCompile "io.github.cottonmc:cotton:0.0.2+18w50a-SNAPSHOT" //Not sure we even need this at the moment
 	
 	implementation "com.google.code.findbugs:jsr305:3.0.2"
+}
+
+if(rootProject.file('private.gradle').exists()) { //gives people more ways to configure the project for publish
+	apply from: 'private.gradle';
 }
 
 publishing {
@@ -51,6 +59,7 @@ publishing {
 			from components.java
 		
 			artifactId = "cotton-energy"
+			version = version+"-SNAPSHOT" //For now, for artifactory
 			
 			pom.withXml {
 				def pomFile = asNode()
@@ -66,16 +75,40 @@ publishing {
 				}
 			}
 			artifacts = [
-				artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${version}.jar") { //release jar - file location not provided anywhere in loom
+				artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${project.version}.jar") { //release jar - file location not provided anywhere in loom
 					classifier null
 					builtBy remapJar
 				},
-				artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${version}-dev.jar") { //release jar - file location not provided anywhere in loom
+				artifact ("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${project.version}-dev.jar") { //release jar - file location not provided anywhere in loom
 					classifier "dev"
 					builtBy remapJar
 				},
-				artifact (sourcesJar)
+				artifact (tasks.sourcesJar)
 			]
+		}
+	}
+	repositories {
+		if (rootProject.ext.has("localMavenUrl")) {
+			maven {
+				url = rootProject.ext.localMavenUrl;
+			}
+		}
+	}
+}
+
+artifactory {
+	contextUrl = 'http://server.bbkr.space:8081/artifactory/'
+	publish {
+		repository {
+			repoKey = "libs-snapshot-local"
+			username = System.getProperty("artifactoryUser")
+			password = System.getProperty("artifactoryPassword")
+		}
+		defaults {
+			publications('maven')
+			
+			publishArtifacts = true
+			publishPom = true
 		}
 	}
 }
@@ -94,12 +127,11 @@ shadowJar {
 	configurations = [project.configurations.shadow]
 }
 
-tasks.remapJar.dependsOn shadowJar
-tasks.remapJar.mustRunAfter shadowJar
-tasks.publish.shouldRunAfter shadowJar
-tasks.publish.mustRunAfter remapJar
-
-tasks.jar << {
-	tasks.remapJar.jar = tasks.shadowJar.outputs.getFiles()[0]
+remapJar {
+	dependsOn shadowJar
+	jar = tasks.shadowJar.archivePath
 }
+
+//The following is probably just me being paranoid
+tasks.publish.mustRunAfter remapJar
 */
