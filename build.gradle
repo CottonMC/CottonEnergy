@@ -36,15 +36,15 @@ targetCompatibility = 1.8
 
 archivesBaseName = "cotton-energy"
 group = "io.github.cottonmc"
-version = "1.0.0+18w50a"
+version = "1.0.0+19w02a"
 
 dependencies {
-	minecraft "com.mojang:minecraft:18w50a"
-	mappings "net.fabricmc:yarn:18w50a.71"
-	modCompile "net.fabricmc:fabric-loader:0.3.0.75"
-	modCompile "net.fabricmc:fabric:0.1.2.64"
-	
-	modCompile "io.github.cottonmc:cotton:0.0.2+18w50a-SNAPSHOT" //Not sure we even need this at the moment
+	minecraft "com.mojang:minecraft:19w02a"
+	mappings "net.fabricmc:yarn:19w02a.24"
+	modCompile "net.fabricmc:fabric-loader:0.3.2.96"
+	modCompile "net.fabricmc:fabric:0.1.4.73"
+
+	modCompile "io.github.cottonmc:cotton:0.0.2+19w02a-SNAPSHOT" //Not sure we even need this at the moment
 	
 	implementation "com.google.code.findbugs:jsr305:3.0.2"
 }
