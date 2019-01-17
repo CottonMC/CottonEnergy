@@ -12,7 +12,7 @@ buildscript {
 
 	}
 	dependencies {
-		classpath "net.fabricmc:fabric-loom:0.1.0-SNAPSHOT"
+		classpath "net.fabricmc:fabric-loom:0.2.0-SNAPSHOT"
 	}
 }
 
@@ -36,15 +36,15 @@ targetCompatibility = 1.8
 
 archivesBaseName = "cotton-energy"
 group = "io.github.cottonmc"
-version = "1.0.0+19w02a"
+version = "1.0.0+19w03a"
 
 dependencies {
-	minecraft "com.mojang:minecraft:19w02a"
-	mappings "net.fabricmc:yarn:19w02a.24"
+	minecraft "com.mojang:minecraft:19w03a"
+	mappings "net.fabricmc:yarn:19w03a.7"
 	modCompile "net.fabricmc:fabric-loader:0.3.2.96"
 	modCompile "net.fabricmc:fabric:0.1.4.73"
 
-	modCompile "io.github.cottonmc:cotton:0.0.2+19w02a-SNAPSHOT" //Not sure we even need this at the moment
+	modCompile "io.github.cottonmc:cotton:0.0.2+19w03a-SNAPSHOT" //Not sure we even need this at the moment
 	
 	implementation "com.google.code.findbugs:jsr305:3.0.2"
 }
@@ -97,19 +97,23 @@ publishing {
 }
 
 artifactory {
-	contextUrl = 'http://server.bbkr.space:8081/artifactory/'
-	publish {
-		repository {
-			repoKey = "libs-snapshot-local"
-			username = System.getProperty("artifactoryUser")
-			password = System.getProperty("artifactoryPassword")
+	if (project.hasProperty("artifactoryUsername")) {
+		contextUrl = 'http://server.bbkr.space:8081/artifactory/'
+		publish {
+			repository {
+				repoKey = "libs-snapshot-local"
+				username = artifactoryUsername
+				password = artifactoryPassword
+			}
+			defaults {
+				publications('maven')
+				
+				publishArtifacts = true
+				publishPom = true
+			}
 		}
-		defaults {
-			publications('maven')
-			
-			publishArtifacts = true
-			publishPom = true
-		}
+	} else {
+		println "Cannot configure artifactory; please define ext.artifactoryUsername and ext.artifactoryPassword before running artifactoryPublish"
 	}
 }
 
