@@ -1,8 +1,6 @@
 package io.github.cottonmc.energy.api;
 
 import io.github.cottonmc.energy.CottonEnergy;
-import net.minecraft.text.TextComponent;
-import net.minecraft.text.TranslatableTextComponent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 

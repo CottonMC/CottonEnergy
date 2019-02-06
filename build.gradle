@@ -36,21 +36,31 @@ targetCompatibility = 1.8
 
 archivesBaseName = "cotton-energy"
 group = "io.github.cottonmc"
-version = "1.0.0+19w03a"
+version = "1.0.0+19w05a"
 
 dependencies {
-	minecraft "com.mojang:minecraft:19w03a"
-	mappings "net.fabricmc:yarn:19w03a.7"
+	minecraft "com.mojang:minecraft:19w05a"
+	mappings "net.fabricmc:yarn:19w05a.6"
 	modCompile "net.fabricmc:fabric-loader:0.3.2.96"
 	modCompile "net.fabricmc:fabric:0.1.4.73"
-
-	modCompile "io.github.cottonmc:cotton:0.0.2+19w03a-SNAPSHOT" //Not sure we even need this at the moment
+	
+	modCompile "io.github.prospector.silk:SilkAPI:1.2.0-34"
+	
+	modCompile "io.github.cottonmc:cotton-ecs:1.0.0+19w05a-SNAPSHOT"
+	//modCompile "io.github.cottonmc:cotton:0.0.2+19w03a-SNAPSHOT" //Not sure we even need this at the moment
 	
 	implementation "com.google.code.findbugs:jsr305:3.0.2"
 }
 
 if(rootProject.file('private.gradle').exists()) { //gives people more ways to configure the project for publish
 	apply from: 'private.gradle';
+}
+
+task sourcesJar(type: Jar) {
+	baseName = archivesBaseName
+	classifier = "sources"
+	from sourceSets.main.allSource
+	from sourceSets.main.resources
 }
 
 publishing {
@@ -117,12 +127,7 @@ artifactory {
 	}
 }
 
-task sourcesJar(type: Jar) {
-	baseName = archivesBaseName
-	classifier = "sources"
-	from sourceSets.main.allSource
-	from sourceSets.main.resources
-}
+
 
 /* //Enable for shadow, and add shadow classifier to the artifact names in publishing
 shadowJar {

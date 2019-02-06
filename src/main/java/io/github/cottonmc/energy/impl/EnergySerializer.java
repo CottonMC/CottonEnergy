@@ -15,12 +15,12 @@ public class EnergySerializer {
 	}
 
 	public static void deserialize(EnergyComponent instance, Tag nbt) {
-		if(instance instanceof EnergyHandler) {
+		if(instance instanceof SimpleEnergyComponent) {
 			if (!(nbt instanceof CompoundTag)) return;
 			CompoundTag tag = (CompoundTag)nbt;
 
-			((EnergyHandler)instance).setCurrentEnergy(tag.getInt("CurrentEnergy"));
-			((EnergyHandler)instance).setMaxEnergy(tag.getInt("MaxEnergy"));
+			((SimpleEnergyComponent)instance).setCurrentEnergy(tag.getInt("CurrentEnergy"));
+			((SimpleEnergyComponent)instance).setMaxEnergy(tag.getInt("MaxEnergy"));
 		}
 	}
 
