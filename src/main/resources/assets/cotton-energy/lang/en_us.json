@@ -1,4 +1,7 @@
 {
   "info.cotton.energy.empty": "Empty",
-  "info.cotton.energy.electrical.amount"       : "$s WU"
+  "info.cotton.energy.electrical.amount": "$d WU",
+  "info.cotton.energy.electrical.amount.k": "$.3fK WU",
+  "info.cotton.energy.electrical.amount.m": "$.3fM WU",
+  "info.cotton.energy.electrical.amount.g": "$.3fG WU"
 }

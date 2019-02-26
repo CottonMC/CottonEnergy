@@ -53,7 +53,7 @@ dependencies {
 }
 
 if(rootProject.file('private.gradle').exists()) { //gives people more ways to configure the project for publish
-	apply from: 'private.gradle';
+	apply from: 'private.gradle'
 }
 
 task sourcesJar(type: Jar) {
