@@ -17,7 +17,7 @@ import net.minecraft.world.World;
  */
 public interface PowerGenCallback {
 
-	public static final Event<PowerGenCallback> EVENT = EventFactory.createArrayBacked(PowerGenCallback.class,
+	Event<PowerGenCallback> EVENT = EventFactory.createArrayBacked(PowerGenCallback.class,
 		(listeners) -> (world, pos) -> {
 			for (PowerGenCallback event : listeners) {
 				event.generate(world, pos);
