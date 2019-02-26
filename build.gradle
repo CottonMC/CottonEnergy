@@ -47,7 +47,7 @@ dependencies {
 	modCompile "io.github.prospector.silk:SilkAPI:1.2.0-34"
 	
 	modCompile "io.github.cottonmc:cotton-ecs:1.0.0+19w05a-SNAPSHOT"
-	modCompile "io.github.cottonmc:cotton:0.0.2+19w08a-SNAPSHOT" //Not sure we even need this at the moment
+	modCompile "io.github.cottonmc:cotton:0.0.3+19w08a-SNAPSHOT" //Not sure we even need this at the moment
 	
 	implementation "com.google.code.findbugs:jsr305:3.0.2"
 }
