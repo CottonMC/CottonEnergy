@@ -22,7 +22,7 @@ public class SimpleEnergyComponent implements EnergyComponent, Observable {
 		this.maxEnergy = maxEnergy;
 	}
 	
-	/** Set this to "true" to save both current and max when serializing to NBT */
+	/** Set this to "true" to save both current and max when serializing to NBT*/
 	public SimpleEnergyComponent setSaveMax(boolean saveMax) {
 		this.saveMax = saveMax;
 		return this;
