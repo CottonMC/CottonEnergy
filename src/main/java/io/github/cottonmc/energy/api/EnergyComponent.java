@@ -50,14 +50,4 @@ public interface EnergyComponent extends Component {
 	 */
 	@Nonnull
 	int extractEnergy(int amount, ActionType actionType);
-	
-	/**
-	 * Indicate to this Component that its holder has been exposed to extremely powerful and sudden
-	 * electromagnetic radiation. If this Component stores electrical energy, it should at least
-	 * remove 'strength' energy from its internal buffer, and can optionally trigger volatile
-	 * behavior or shut the machine down temporarily. However, specially designed induction coils
-	 * might actually charge if strength is below their capacity.
-	 * @param strength The strength of the received electromagnetic pulse.
-	 */
-	void emp(int strength);
 }
