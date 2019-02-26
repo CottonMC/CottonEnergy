@@ -94,12 +94,6 @@ public class SimpleEnergyComponent implements EnergyComponent, Observable {
 			return extractAmount;
 		}
 		
-		@Override
-		public void emp(int strength) {
-			currentEnergy = Math.max(0, currentEnergy-strength);
-			onChanged();
-		}
-		
 	//}
 	
 	//implements Observable {

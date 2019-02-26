@@ -73,10 +73,10 @@ publishing {
 			
 			pom.withXml {
 				def pomFile = asNode()
-				def depsNode = pomFile.get("dependencies");
-				pomFile.remove(depsNode);
+				def depsNode = pomFile.get("dependencies")
+				pomFile.remove(depsNode)
 				
-				def newDeps = pomFile.appendNode("dependencies");
+				def newDeps = pomFile.appendNode("dependencies")
 				configurations.modCompile.getResolvedConfiguration().getFirstLevelModuleDependencies().each {
 					def artifactNode = newDeps.appendNode("dependency")
 					artifactNode.appendNode('groupId', it.moduleGroup)
@@ -100,7 +100,7 @@ publishing {
 	repositories {
 		if (rootProject.ext.has("localMavenUrl")) {
 			maven {
-				url = rootProject.ext.localMavenUrl;
+				url = rootProject.ext.localMavenUrl
 			}
 		}
 	}
