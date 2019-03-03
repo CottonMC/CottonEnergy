@@ -93,12 +93,6 @@ public class SimpleEnergyComponent implements EnergyComponent, Observable {
 			}
 			return extractAmount;
 		}
-
-		@Override
-		public void emp(int strength) {
-			// do nothing
-		}
-
 	//}
 	
 	//implements Observable {

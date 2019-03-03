@@ -60,7 +60,6 @@ public interface EnergyComponent extends Component {
 	 * @param strength The strength of the received electromagnetic pulse.
 	 */
 	default void emp(int strength) {
-		int toExtract = extractEnergy(strength, ActionType.SIMULATE);
-		if (toExtract > 0) extractEnergy(toExtract, ActionType.PERFORM);
+		extractEnergy(strength, ActionType.PERFORM);
 	}
 }

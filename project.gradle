@@ -1,0 +1,29 @@
+ext {
+	projectName = "cotton-energy";
+	group = "io.github.cottonmc";
+	version = "1.0.0+19w08a";
+	snapshot = true;
+
+	minecraft = "19w08a";
+	mappings = "19w08a.4";
+	loader = "0.3.7.108";
+	fabricMod = "0.2.2.103";
+	silkMod = "1.2.0-34";
+	jankson = null;
+
+	needsShadow = false;
+} 
+
+repositories {
+	maven {
+		name = "CottonMC";
+		url  = "http://server.bbkr.space:8081/artifactory/libs-snapshot";
+	}
+}
+
+dependencies {
+	modCompile "io.github.cottonmc:cotton-ecs:1.0.0+19w05a-SNAPSHOT"
+	modCompile "io.github.cottonmc:cotton:0.0.3+19w08a-SNAPSHOT"
+
+	implementation "com.google.code.findbugs:jsr305:3.0.2"
+}
