@@ -1,7 +1,6 @@
 package io.github.cottonmc.energy;
 
 
-import io.github.cottonmc.cotton.Cotton;
 import io.github.cottonmc.cotton.logging.Ansi;
 import io.github.cottonmc.cotton.logging.ModLogger;
 import net.minecraft.util.registry.DefaultedRegistry;
