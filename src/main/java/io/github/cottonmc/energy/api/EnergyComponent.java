@@ -2,8 +2,8 @@ package io.github.cottonmc.energy.api;
 
 import javax.annotation.Nonnull;
 
-import alexiil.mc.lib.attributes.Attribute;
 import alexiil.mc.lib.attributes.Attributes;
+import alexiil.mc.lib.attributes.DefaultedAttribute;
 import io.github.prospector.silk.util.ActionType;
 
 public interface EnergyComponent {
@@ -24,7 +24,7 @@ public interface EnergyComponent {
 		public EnergyType getPreferredType() { return DefaultEnergyTypes.LOW_VOLTAGE; }
 	};
 	
-	public static final Attribute<EnergyComponent> ENERGY_COMPONENT = Attributes.createDefaulted(EnergyComponent.class, EnergyComponent.EMPTY_ENERGY);
+	public static final DefaultedAttribute<EnergyComponent> ENERGY_COMPONENT = Attributes.createDefaulted(EnergyComponent.class, EnergyComponent.EMPTY_ENERGY);
 	
 	/**
 	 * @return the maximum amount of energy the storage can hold.
