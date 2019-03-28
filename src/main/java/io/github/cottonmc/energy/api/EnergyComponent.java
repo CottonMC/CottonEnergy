@@ -2,11 +2,29 @@ package io.github.cottonmc.energy.api;
 
 import javax.annotation.Nonnull;
 
+import alexiil.mc.lib.attributes.Attribute;
+import alexiil.mc.lib.attributes.Attributes;
 import io.github.prospector.silk.util.ActionType;
 
-import io.github.cottonmc.ecs.api.Component;
-
-public interface EnergyComponent extends Component {
+public interface EnergyComponent {
+	public static final EnergyComponent EMPTY_ENERGY = new EnergyComponent() {
+		@Override
+		public int getMaxEnergy() { return 0; }
+		@Override
+		public int getCurrentEnergy() { return 0; }
+		@Override
+		public boolean canInsertEnergy() { return false; }
+		@Override
+		public int insertEnergy(EnergyType type, int amount, ActionType actionType) { return amount; }
+		@Override
+		public boolean canExtractEnergy() { return false; }
+		@Override
+		public int extractEnergy(EnergyType type, int amount, ActionType actionType) { return 0; }
+		@Override
+		public EnergyType getPreferredType() { return DefaultEnergyTypes.LOW_VOLTAGE; }
+	};
+	
+	public static final Attribute<EnergyComponent> ENERGY_COMPONENT = Attributes.createDefaulted(EnergyComponent.class, EnergyComponent.EMPTY_ENERGY);
 	
 	/**
 	 * @return the maximum amount of energy the storage can hold.
@@ -32,7 +50,7 @@ public interface EnergyComponent extends Component {
 	 * @return the amount of leftover energy, or 0 if the insertion was completely successful.
 	 */
 	@Nonnull
-	int insertEnergy(int amount, ActionType actionType);
+	int insertEnergy(EnergyType type, int amount, ActionType actionType);
 	
 	/**
 	 * Find out whether energy can be extracted.
@@ -49,7 +67,14 @@ public interface EnergyComponent extends Component {
 	 * @return The amount of energy actually extracted, or zero if none was extracted.
 	 */
 	@Nonnull
-	int extractEnergy(int amount, ActionType actionType);
+	int extractEnergy(EnergyType type, int amount, ActionType actionType);
+	
+	/**
+	 * Gets the typical kind of energy this Component works with.
+	 * @return
+	 */
+	@Nonnull
+	EnergyType getPreferredType();
 	
 	/**
 	 * Indicate to this Component that its holder has been exposed to extremely powerful and sudden
@@ -60,6 +85,6 @@ public interface EnergyComponent extends Component {
 	 * @param strength The strength of the received electromagnetic pulse.
 	 */
 	default void emp(int strength) {
-		extractEnergy(strength, ActionType.PERFORM);
+		extractEnergy(getPreferredType(), strength, ActionType.PERFORM);
 	}
 }

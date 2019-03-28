@@ -13,21 +13,21 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class CottonEnergy implements ModInitializer {
-    private static final ModLogger logger = new ModLogger("cotton-energy", "COTTON ENERGY");
-    public static final Registry<EnergyType> ENERGY_REGISTRY;
-    static { //Be ready before our admirers!
-        MutableRegistry<EnergyType> temp_init = new DefaultedRegistry<>("cotton:low_voltage");
-        Registry.register(Registry.REGISTRIES, new Identifier("cotton", "energy"), temp_init);
-        ENERGY_REGISTRY = temp_init;
+	private static final ModLogger logger = new ModLogger("cotton-energy", "COTTON ENERGY");
+	public static final Registry<EnergyType> ENERGY_REGISTRY;
+	static { //Be ready before our admirers!
+		MutableRegistry<EnergyType> temp_init = new DefaultedRegistry<>("cotton:low_voltage");
+		Registry.register(Registry.REGISTRIES, new Identifier("cotton", "energy"), temp_init);
+		ENERGY_REGISTRY = temp_init;
+		
+		DefaultEnergyTypes.init();
+	}
 
-        DefaultEnergyTypes.init();
-    }
-
-    @Override
-    public void onInitialize() {
-        logger.setPrefixFormat(Ansi.Red);
-
-        logger.info("cotton-energy initialized.");
-    }
-
+	@Override
+	public void onInitialize() {
+		logger.setPrefixFormat(Ansi.Red);
+		
+		logger.info("cotton-energy initialized.");
+	}
+	
 }
