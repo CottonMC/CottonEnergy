@@ -5,7 +5,7 @@ ext {
 	snapshot = true;
 
 	minecraft = "19w12b";
-	mappings = "19w12b.12";
+	mappings = "19w12b.6";
 	loader = "0.3.7.109";
 	fabricMod = "0.2.5.114";
 	silkMod = "1.2.0-34";
