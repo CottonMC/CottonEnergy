@@ -27,7 +27,7 @@ public class CottonEnergy implements ModInitializer {
 	public void onInitialize() {
 		logger.setPrefixFormat(Ansi.Red);
 		
-		logger.info("cotton-energy initialized.");
+		logger.info("Cotton Energy initialized.");
 	}
 	
 }

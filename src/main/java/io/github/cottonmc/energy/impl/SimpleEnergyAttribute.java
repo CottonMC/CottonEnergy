@@ -3,7 +3,7 @@ package io.github.cottonmc.energy.impl;
 import com.google.common.collect.Lists;
 
 import io.github.cottonmc.energy.api.DefaultEnergyTypes;
-import io.github.cottonmc.energy.api.EnergyComponent;
+import io.github.cottonmc.energy.api.EnergyAttribute;
 import io.github.cottonmc.energy.api.EnergyType;
 import io.github.cottonmc.energy.api.Observable;
 import io.github.prospector.silk.util.ActionType;
@@ -15,7 +15,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Optional;
 
-public class SimpleEnergyComponent implements EnergyComponent, Observable {
+public class SimpleEnergyAttribute implements EnergyAttribute, Observable {
 	protected EnergyType energyType = DefaultEnergyTypes.LOW_VOLTAGE;
 	protected int maxEnergy;
 	protected int currentEnergy = 0;
@@ -23,17 +23,22 @@ public class SimpleEnergyComponent implements EnergyComponent, Observable {
 	protected boolean saveMax = false;
 	protected final List<Runnable> listeners = Lists.newArrayList();
 
-	public SimpleEnergyComponent(int maxEnergy) {
+	public SimpleEnergyAttribute(int maxEnergy) {
 		this.maxEnergy = maxEnergy;
+	}
+
+	public SimpleEnergyAttribute(int maxEnergy, EnergyType type) {
+		this.maxEnergy = maxEnergy;
+		this.energyType = type;
 	}
 	
 	/** Set this to "true" to save both current and max when serializing to NBT*/
-	public SimpleEnergyComponent setSaveMax(boolean saveMax) {
+	public SimpleEnergyAttribute setSaveMax(boolean saveMax) {
 		this.saveMax = saveMax;
 		return this;
 	}
 	
-	public SimpleEnergyComponent setCurrentEnergy(int amount) {
+	public SimpleEnergyAttribute setCurrentEnergy(int amount) {
 		int prev = currentEnergy;
 		if (amount <= maxEnergy) currentEnergy = amount;
 		else currentEnergy = maxEnergy;
@@ -41,7 +46,7 @@ public class SimpleEnergyComponent implements EnergyComponent, Observable {
 		return this;
 	}
 
-	public SimpleEnergyComponent setMaxEnergy(int amount) {
+	public SimpleEnergyAttribute setMaxEnergy(int amount) {
 		int prev = maxEnergy;
 		maxEnergy = amount;
 		if (currentEnergy > maxEnergy) currentEnergy = maxEnergy;
@@ -89,7 +94,7 @@ public class SimpleEnergyComponent implements EnergyComponent, Observable {
 		onChanged();
 	}
 	
-	//implements EnergyComponent {
+	//implements EnergyAttribute {
 		
 		@Override
 		public int getMaxEnergy() {

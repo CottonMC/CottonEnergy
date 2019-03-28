@@ -1,13 +1,13 @@
 ext {
 	projectName = "cotton-energy";
 	group = "io.github.cottonmc";
-	version = "1.0.0+19w11b";
+	version = "1.1.0+19w12b";
 	snapshot = true;
 
-	minecraft = "19w11b";
-	mappings = "19w11b.4";
+	minecraft = "19w12b";
+	mappings = "19w12b.12";
 	loader = "0.3.7.109";
-	fabricMod = "0.2.3.111";
+	fabricMod = "0.2.5.114";
 	silkMod = "1.2.0-34";
 	jankson = null;
 
@@ -27,7 +27,7 @@ repositories {
 
 dependencies {
 	//modCompile "io.github.cottonmc:cotton-ecs:1.0.0+19w05a-SNAPSHOT"
-	modCompile "io.github.cottonmc:cotton:0.0.3+19w08a-SNAPSHOT"
+	modCompile "io.github.cottonmc:cotton:0.0.7+19w12b-SNAPSHOT"
 	modCompile "alexiil.mc.lib:libblockattributes:0.3.0"
 
 	implementation "com.google.code.findbugs:jsr305:3.0.2"

@@ -6,8 +6,8 @@ import alexiil.mc.lib.attributes.Attributes;
 import alexiil.mc.lib.attributes.DefaultedAttribute;
 import io.github.prospector.silk.util.ActionType;
 
-public interface EnergyComponent {
-	public static final EnergyComponent EMPTY_ENERGY = new EnergyComponent() {
+public interface EnergyAttribute {
+	public static final EnergyAttribute EMPTY_ENERGY = new EnergyAttribute() {
 		@Override
 		public int getMaxEnergy() { return 0; }
 		@Override
@@ -24,7 +24,7 @@ public interface EnergyComponent {
 		public EnergyType getPreferredType() { return DefaultEnergyTypes.LOW_VOLTAGE; }
 	};
 	
-	public static final DefaultedAttribute<EnergyComponent> ENERGY_COMPONENT = Attributes.createDefaulted(EnergyComponent.class, EnergyComponent.EMPTY_ENERGY);
+	public static final DefaultedAttribute<EnergyAttribute> ENERGY_ATTRIBUTE = Attributes.createDefaulted(EnergyAttribute.class, EnergyAttribute.EMPTY_ENERGY);
 	
 	/**
 	 * @return the maximum amount of energy the storage can hold.
