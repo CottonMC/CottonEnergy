@@ -1,8 +1,8 @@
 package io.github.cottonmc.energy;
 
 
-import io.github.cottonmc.cotton.logging.Ansi;
-import io.github.cottonmc.cotton.logging.ModLogger;
+//import io.github.cottonmc.cotton.logging.Ansi;
+//import io.github.cottonmc.cotton.logging.ModLogger;
 import net.minecraft.util.registry.DefaultedRegistry;
 import net.minecraft.util.registry.MutableRegistry;
 
@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class CottonEnergy implements ModInitializer {
-	private static final ModLogger logger = new ModLogger("cotton-energy", "COTTON ENERGY");
+//	private static final ModLogger logger = new ModLogger("cotton-energy", "COTTON ENERGY");
 	public static final Registry<EnergyType> ENERGY_REGISTRY;
 	static { //Be ready before our admirers!
 		MutableRegistry<EnergyType> temp_init = new DefaultedRegistry<>("cotton:low_voltage");
@@ -25,9 +25,9 @@ public class CottonEnergy implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		logger.setPrefixFormat(Ansi.Red);
-		
-		logger.info("Cotton Energy initialized.");
+//		logger.setPrefixFormat(Ansi.Red);
+//
+//		logger.info("Cotton Energy initialized.");
 	}
 	
 }

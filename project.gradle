@@ -27,7 +27,7 @@ repositories {
 
 dependencies {
 	//modCompile "io.github.cottonmc:cotton-ecs:1.0.0+19w05a-SNAPSHOT"
-	modCompile "io.github.cottonmc:cotton:0.0.7+19w12b-SNAPSHOT"
+	//modCompile "io.github.cottonmc:cotton:0.0.7+19w12b-SNAPSHOT"
 	modCompile "alexiil.mc.lib:libblockattributes:0.3.0"
 
 	implementation "com.google.code.findbugs:jsr305:3.0.2"
