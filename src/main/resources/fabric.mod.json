@@ -1,9 +1,30 @@
 {
+  "schemaVersion": 1,
   "id": "cotton-energy",
+  "version": "$version",
+
   "name": "Cotton Energy",
-  "version": "1.1.1",
-  "side": "universal",
-  "initializers": [
-    "io.github.cottonmc.energy.CottonEnergy"
-  ]
+  "icon": "assets/cotton-energy/icon.png",
+  "description": "Flavor-based Energy API",
+  "licence": "MIT",
+  "contact": {
+    "maven": "http://server.bbkr.space:8081/artifactory/libs-snapshot/io/github/cottonmc/cotton-energy/",
+    "sources": "https://github.com/CottonMC/cotton-energy"
+  },
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.cottonmc.energy.CottonEnergy"
+    ]
+  },
+  "mixins": [
+    "cotton.common.json"
+  ],
+  "requires": {
+    "libblockattributes": ">=0.3.0"
+  },
+  "custom": {
+    "modmenu:api": true
+  }
 }
