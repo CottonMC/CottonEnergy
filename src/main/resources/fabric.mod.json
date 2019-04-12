@@ -18,9 +18,6 @@
       "io.github.cottonmc.energy.CottonEnergy"
     ]
   },
-  "mixins": [
-    "cotton.common.json"
-  ],
   "requires": {
     "libblockattributes": ">=0.3.0"
   },
