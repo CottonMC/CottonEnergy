@@ -40,6 +40,9 @@ version = ext.version + ((ext.snapshot) ? "-SNAPSHOT" : "");
 
 repositories {
 	mavenCentral()
+	maven {
+		url = "https://maven.fabricmc.net/"
+	}
 }
 
 dependencies {
