@@ -1,12 +1,11 @@
 package io.github.cottonmc.energy.impl;
 
+import alexiil.mc.lib.attributes.Simulation;
 import com.google.common.collect.Lists;
-
 import io.github.cottonmc.energy.api.DefaultEnergyTypes;
 import io.github.cottonmc.energy.api.EnergyAttribute;
 import io.github.cottonmc.energy.api.EnergyType;
 import io.github.cottonmc.energy.api.Observable;
-import io.github.prospector.silk.util.ActionType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.Tag;
@@ -113,11 +112,11 @@ public class SimpleEnergyAttribute implements EnergyAttribute, Observable {
 	
 		@Override
 		public boolean canExtractEnergy() {
-			return true;
+		return true;
 		}
 		
 		@Override
-		public int insertEnergy(EnergyType type, int amount, ActionType actionType) {
+		public int insertEnergy(EnergyType type, int amount, Simulation actionType) {
 			Optional<Integer> converted = EnergyType.convert(type, amount, this.energyType);
 			if (!converted.isPresent()) return amount; //converted is now in our locally-understood EnergyType.
 			
@@ -128,7 +127,7 @@ public class SimpleEnergyAttribute implements EnergyAttribute, Observable {
 			int insertRoom = maxEnergy - currentEnergy;
 			if (insertAmount > insertRoom) insertAmount = insertRoom;
 			
-			if (actionType == ActionType.PERFORM) {
+			if (actionType == Simulation.ACTION) {
 				currentEnergy += insertAmount;
 				
 				if (this.energyType.isHarmful(type)) {
@@ -142,7 +141,7 @@ public class SimpleEnergyAttribute implements EnergyAttribute, Observable {
 		}
 		
 		@Override
-		public int extractEnergy(EnergyType type, int amount, ActionType actionType) {
+		public int extractEnergy(EnergyType type, int amount, Simulation actionType) {
 			Optional<Integer> converted = EnergyType.convert(type, amount, this.energyType);
 			if (!converted.isPresent()) return 0; //converted is now in our locally-understood EnergyType.
 			
@@ -152,7 +151,7 @@ public class SimpleEnergyAttribute implements EnergyAttribute, Observable {
 			
 			if (extractAmount > currentEnergy) extractAmount = currentEnergy;
 			
-			if (actionType == ActionType.PERFORM) {
+			if (actionType == Simulation.ACTION) {
 				currentEnergy -= extractAmount;
 				if (extractAmount != 0) onChanged();
 			}

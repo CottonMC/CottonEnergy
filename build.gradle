@@ -13,7 +13,7 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath "net.fabricmc:fabric-loom:0.2.1-SNAPSHOT" //Don't backdate before 0.2.0; features in this version prevent messy workarounds!
+		classpath "net.fabricmc:fabric-loom:0.2.2-SNAPSHOT" //Don't backdate before 0.2.0; features in this version prevent messy workarounds!
 		classpath "com.github.jengelman.gradle.plugins:shadow:2.0.0"
 	}
 }
@@ -25,7 +25,7 @@ plugins {
 apply plugin: "maven-publish"
 apply plugin: net.fabricmc.loom.LoomGradlePlugin
 
-apply from: "project.gradle";
+apply from: "project.gradle"
 
 if (ext.needsShadow) {
 	apply plugin: "com.github.johnrengelman.shadow"
@@ -34,9 +34,9 @@ if (ext.needsShadow) {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-archivesBaseName = ext.projectName;
-group = ext.group;
-version = ext.version + ((ext.snapshot) ? "-SNAPSHOT" : "");
+archivesBaseName = ext.projectName
+group = ext.group
+version = ext.version + ((ext.snapshot) ? "-SNAPSHOT" : "")
 
 repositories {
 	mavenCentral()
@@ -46,26 +46,26 @@ repositories {
 }
 
 dependencies {
-	minecraft "com.mojang:minecraft:"+project.ext.minecraft;
-	mappings "net.fabricmc:yarn:"+project.ext.mappings;
-	modCompile "net.fabricmc:fabric-loader:"+project.ext.loader;
+	minecraft "com.mojang:minecraft:"+project.ext.minecraft
+	mappings "net.fabricmc:yarn:"+project.ext.mappings
+	modCompile "net.fabricmc:fabric-loader:"+project.ext.loader
 	if (project.ext.fabricMod!=null) {
-		modCompile "net.fabricmc:fabric:"+project.ext.fabricMod;
-		include "net.fabricmc:fabric:"+project.ext.fabricMod;
+		modCompile "net.fabricmc.fabric-api:fabric-api:"+project.ext.fabricMod
+		include "net.fabricmc.fabric-api:fabric-api:"+project.ext.fabricMod
 	}
 	if (project.ext.silkMod!=null) {
-		modCompile "io.github.prospector.silk:SilkAPI:"+project.ext.silkMod;
-		include "io.github.prospector.silk:SilkAPI:"+project.ext.silkMod;
+		modCompile "io.github.prospector.silk:SilkAPI:"+project.ext.silkMod
+		include "io.github.prospector.silk:SilkAPI:"+project.ext.silkMod
 	}
 	if (project.ext.jankson!=null) {
 		if (project.ext.needsShadow) {
 			//Jankson will be shadowed
-			shadow "blue.endless:jankson:"+project.ext.jankson;
-			implementation "blue.endless:jankson:"+project.ext.jankson;
+			shadow "blue.endless:jankson:"+project.ext.jankson
+			implementation "blue.endless:jankson:"+project.ext.jankson
 		} else {
-			System.out.println("#################################################################");
-			System.out.println("# Shadow is disabled. Jankson will be ommitted from this build! #");
-			System.out.println("#################################################################");
+			System.out.println("#################################################################")
+			System.out.println("# Shadow is disabled. Jankson will be ommitted from this build! #")
+			System.out.println("#################################################################")
 		}
 	}
 }
@@ -73,11 +73,11 @@ dependencies {
 processResources {
 	inputs.property "version", project.ext.version;
 	from(sourceSets.main.resources.srcDirs) {
-		include "fabric.mod.json";
-		expand version: project.ext.version;
+		include "fabric.mod.json"
+		expand version: project.ext.version
 	}
 	from(sourceSets.main.resources.srcDirs) {
-		exclude "fabric.mod.json";
+		exclude "fabric.mod.json"
 	}
 }
 
@@ -91,7 +91,7 @@ task sourcesJar(type: Jar) {
 if (ext.needsShadow) {
 	shadowJar {
 		if (project.ext.jankson!=null) {
-			relocate 'blue.endless.jankson', 'io.github.cottonmc.repackage.blue.endless.jankson';
+			relocate 'blue.endless.jankson', 'io.github.cottonmc.repackage.blue.endless.jankson'
 		}
 		
 		classifier = "shadow"
@@ -115,7 +115,7 @@ publishing {
 		maven(MavenPublication) {
 			from components.java
 
-			artifactId = project.ext.projectName;
+			artifactId = project.ext.projectName
 
 
 			pom.withXml {

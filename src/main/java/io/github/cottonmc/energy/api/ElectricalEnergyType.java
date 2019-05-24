@@ -1,7 +1,6 @@
 package io.github.cottonmc.energy.api;
 
-import net.minecraft.text.TextComponent;
-import net.minecraft.text.TranslatableTextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 
 public class ElectricalEnergyType implements EnergyType {
 
@@ -17,22 +16,22 @@ public class ElectricalEnergyType implements EnergyType {
 	}
 
 	@Override
-	public TextComponent getDisplayAmount(int amount) {
+	public TranslatableComponent getDisplayAmount(int amount) {
 		//TODO: handle KWU, MWU, and GWU
 		if (amount < 1000) { // x < 1M
-			return new TranslatableTextComponent("info.cotton.energy.electrical.amount", amount);
+			return new TranslatableComponent("info.cotton.energy.electrical.amount", amount);
 		}
 		else if (amount < 1_000_000) { // 1K < x < 1M
 			float tAmount = amount / 1000;
-			return new TranslatableTextComponent("info.cotton.energy.electrical.amount.k", tAmount);
+			return new TranslatableComponent("info.cotton.energy.electrical.amount.k", tAmount);
 		}
 		else if (amount < 1_000_000_000) { // 1M < x < 1G
 			float tAmount = amount / 1_000_1000;
-			return new TranslatableTextComponent("info.cotton.energy.electrical.amount.m", tAmount);
+			return new TranslatableComponent("info.cotton.energy.electrical.amount.m", tAmount);
 		}
 		else { // 1G < x
 			float tAmount = amount / 1_000_000_000;
-			return new TranslatableTextComponent("info.cotton.energy.electrical.amount.g", tAmount);
+			return new TranslatableComponent("info.cotton.energy.electrical.amount.g", tAmount);
 		}
 	}
 	

@@ -1,8 +1,8 @@
 package io.github.cottonmc.energy.api;
 
-import java.util.Optional;
+import net.minecraft.network.chat.TranslatableComponent;
 
-import net.minecraft.text.TextComponent;
+import java.util.Optional;
 
 public interface EnergyType {
 	/** @return the minimum amount of energy that can be transferred at a time. */
@@ -16,7 +16,7 @@ public interface EnergyType {
 	 * @param amount the total aggregate number of energy units being represented.
 	 * @return a TextComponent representing this quantity and its relevant units, such as "300 WU".
 	 */
-	TextComponent getDisplayAmount(int amount);
+	TranslatableComponent getDisplayAmount(int amount);
 	
 	/**
 	 * Returns true if this EnergyType knows how to convert energy to and from the specified other

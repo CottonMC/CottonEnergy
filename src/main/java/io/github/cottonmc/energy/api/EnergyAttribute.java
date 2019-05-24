@@ -1,10 +1,10 @@
 package io.github.cottonmc.energy.api;
 
-import javax.annotation.Nonnull;
-
 import alexiil.mc.lib.attributes.Attributes;
 import alexiil.mc.lib.attributes.DefaultedAttribute;
-import io.github.prospector.silk.util.ActionType;
+import alexiil.mc.lib.attributes.Simulation;
+
+import javax.annotation.Nonnull;
 
 public interface EnergyAttribute {
 	public static final EnergyAttribute EMPTY_ENERGY = new EnergyAttribute() {
@@ -15,11 +15,11 @@ public interface EnergyAttribute {
 		@Override
 		public boolean canInsertEnergy() { return false; }
 		@Override
-		public int insertEnergy(EnergyType type, int amount, ActionType actionType) { return amount; }
+		public int insertEnergy(EnergyType type, int amount, Simulation simulation) { return amount; }
 		@Override
 		public boolean canExtractEnergy() { return false; }
 		@Override
-		public int extractEnergy(EnergyType type, int amount, ActionType actionType) { return 0; }
+		public int extractEnergy(EnergyType type, int amount, Simulation simulation) { return 0; }
 		@Override
 		public EnergyType getPreferredType() { return DefaultEnergyTypes.LOW_VOLTAGE; }
 	};
@@ -46,11 +46,11 @@ public interface EnergyAttribute {
 	 * Attempt to insert energy.
 	 *
 	 * @param amount        the amount of energy to insert.
-	 * @param actionType    whether to SIMULATE or PERFORM insertion.
+	 * @param simulation    whether to SIMULATE or PERFORM insertion.
 	 * @return the amount of leftover energy, or 0 if the insertion was completely successful.
 	 */
 	@Nonnull
-	int insertEnergy(EnergyType type, int amount, ActionType actionType);
+	int insertEnergy(EnergyType type, int amount, Simulation simulation);
 	
 	/**
 	 * Find out whether energy can be extracted.
@@ -63,11 +63,11 @@ public interface EnergyAttribute {
 	 * Attempt to extract energy.
 	 *
 	 * @param amount         the amount of energy to extract.
-	 * @param actionType     whether to SIMULATE or PERFORM extraction.
+	 * @param simulation     whether to SIMULATE or PERFORM extraction.
 	 * @return The amount of energy actually extracted, or zero if none was extracted.
 	 */
 	@Nonnull
-	int extractEnergy(EnergyType type, int amount, ActionType actionType);
+	int extractEnergy(EnergyType type, int amount, Simulation simulation);
 	
 	/**
 	 * Gets the typical kind of energy this Component works with.
@@ -85,6 +85,6 @@ public interface EnergyAttribute {
 	 * @param strength The strength of the received electromagnetic pulse.
 	 */
 	default void emp(int strength) {
-		extractEnergy(getPreferredType(), strength, ActionType.PERFORM);
+		extractEnergy(getPreferredType(), strength, Simulation.ACTION);
 	}
 }
