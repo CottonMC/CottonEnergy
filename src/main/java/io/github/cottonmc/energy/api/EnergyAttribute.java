@@ -47,7 +47,7 @@ public interface EnergyAttribute {
 	 *
 	 * @param amount        the amount of energy to insert.
 	 * @param simulation    whether to SIMULATE or PERFORM insertion.
-	 * @return the amount of inserted energy
+	 * @return the amount of leftover energy, or 0 if the insertion was completely successful.
 	 */
 	@Nonnull
 	int insertEnergy(EnergyType type, int amount, Simulation simulation);
