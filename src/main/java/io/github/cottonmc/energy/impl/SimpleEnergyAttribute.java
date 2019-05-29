@@ -137,7 +137,7 @@ public class SimpleEnergyAttribute implements EnergyAttribute, Observable {
 				if (insertAmount != 0) onChanged();
 			}
 			
-			return EnergyType.convert(this.energyType, insertAmount, type).orElse(0); //Result is now in the *requested* EnergyType
+			return amount - EnergyType.convert(this.energyType, insertAmount, type).orElse(0); //Result is now in the *requested* EnergyType
 		}
 		
 		@Override
