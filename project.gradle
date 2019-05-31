@@ -1,7 +1,7 @@
 ext {
 	projectName = "cotton-energy"
 	group = "io.github.cottonmc"
-	version = "1.3.2+1.14.2"
+	version = "1.4.0+1.14.2"
 	snapshot = true
 
 	minecraft = "1.14.2"
@@ -10,7 +10,6 @@ ext {
 
 	fabricMod = "0.3.0+build.173"
 
-	silkMod = null
 	jankson = null
 
 	needsShadow = false
@@ -28,8 +27,8 @@ repositories {
 }
 
 dependencies {
-	modCompile "alexiil.mc.lib:libblockattributes:0.4.2"
-	include "alexiil.mc.lib:libblockattributes:0.4.2"
+	modCompile ("alexiil.mc.lib:libblockattributes:0.4.2") { transitive = false }
+	include ("alexiil.mc.lib:libblockattributes:0.4.2") { transitive = false }
 
 	implementation "com.google.code.findbugs:jsr305:3.0.2"
 }
