@@ -1,11 +1,15 @@
 package io.github.cottonmc.energy.api;
 
-import net.minecraft.nbt.CompoundTag;
-
+/**
+ * This should NEVER ever be used on ANYTHING that's NOT
+ * an ENTITY or WORLD.
+ *
+ * You should remember to mark the provider dirty. For
+ * BlockEntities use LibBlockAttributes' existing
+ * capabilities. Blocks should never have the attribute.
+ *
+ * You're warned.
+ */
 public interface EnergyAttributeProvider {
-    default EnergyAttribute getEnergy(CompoundTag tag) {
-        return fromTag(tag);
-    }
-    EnergyAttribute fromTag(CompoundTag tag);
-    void toTag(EnergyAttribute attribute, CompoundTag tag);
+    EnergyAttribute getEnergyAttribute();
 }
