@@ -3,8 +3,8 @@ package io.github.cottonmc.energy.api;
 import net.minecraft.item.ItemStack;
 
 /**
- * This should NEVER ever be used on ANYTHING that's NOT
- * an ITEM.
+ * This class MUST NOT be implemented on any class that 
+ * doesn't also subclass Item.
  *
  * Once you've made changes to the attribute in the item,
  * you probably want to set the ItemStack into the
