@@ -19,7 +19,7 @@
     ]
   },
   "requires": {
-    "libblockattributes": ">=0.3.0"
+    "libblockattributes-core": ">=0.4.7"
   },
   "custom": {
     "modmenu:api": true
