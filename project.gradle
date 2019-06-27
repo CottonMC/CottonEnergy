@@ -1,14 +1,14 @@
 ext {
 	projectName = "cotton-energy"
 	group = "io.github.cottonmc"
-	version = "1.4.0+1.14.2"
+	version = "1.5.0+1.14.3"
 	snapshot = true
 
-	minecraft = "1.14.2"
-	mappings = "1.14.2+build.2"
-	loader = "0.4.8+build.154"
+	minecraft = "1.14.3"
+	mappings = "1.14.3+build.1"
+	loader = "0.4.8+build.155"
 
-	fabricMod = "0.3.0+build.173"
+	fabricMod = "0.3.0+build.187"
 
 	jankson = null
 
