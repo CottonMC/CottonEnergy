@@ -1,6 +1,6 @@
 package io.github.cottonmc.energy.api;
 
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.text.TranslatableText;
 
 import java.util.Optional;
 
@@ -14,9 +14,9 @@ public interface EnergyType {
 	/**
 	 * Gets human-readable text representing an energy value of this type.
 	 * @param amount the total aggregate number of energy units being represented.
-	 * @return a TextComponent representing this quantity and its relevant units, such as "300 WU".
+	 * @return a TextText representing this quantity and its relevant units, such as "300 WU".
 	 */
-	TranslatableComponent getDisplayAmount(int amount);
+	TranslatableText getDisplayAmount(int amount);
 	
 	/**
 	 * Returns true if this EnergyType knows how to convert energy to and from the specified other
