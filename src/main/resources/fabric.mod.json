@@ -18,7 +18,7 @@
       "io.github.cottonmc.energy.CottonEnergy"
     ]
   },
-  "requires": {
+  "depends": {
     "libblockattributes-core": ">=0.4.7"
   },
   "custom": {
