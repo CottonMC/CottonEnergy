@@ -20,5 +20,10 @@
   },
   "depends": {
     "libblockattributes-core": ">=0.4.7"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [ "library" ]
+    }
   }
 }
