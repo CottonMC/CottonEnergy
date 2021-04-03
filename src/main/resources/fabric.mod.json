@@ -20,8 +20,5 @@
   },
   "depends": {
     "libblockattributes-core": ">=0.4.7"
-  },
-  "custom": {
-    "modmenu:api": true
   }
 }
